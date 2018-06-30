@@ -10,7 +10,15 @@ tokenForUser = user => {
 };
 
 router.post('/', (req, res, next) => {
-    res.json({ token: tokenForUser(req.user) });
+    res.json({
+        fail: null,
+        state: null,
+        success: {
+            user: {
+                token: tokenForUser(req.user)
+            }
+        }
+    });
 });
 
 module.exports = router;

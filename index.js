@@ -4,11 +4,13 @@ const database = require('./database/index');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const route = require('./route/route');
+const cors = require('cors');
 
 const app = express();
 database();
 
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
