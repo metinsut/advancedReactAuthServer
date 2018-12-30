@@ -5,20 +5,21 @@ const jtw = require('jwt-simple');
 const config = require('../config');
 
 tokenForUser = user => {
-    const timestamp = new Date().getTime();
-    return jtw.encode({ sub: user.id, iat: timestamp }, config.secret);
+	const timestamp = new Date().getTime();
+	return jtw.encode({ sub: user.id, iat: timestamp }, config.secret);
 };
 
 router.post('/', (req, res, next) => {
-    res.json({
-        fail: null,
-        state: null,
-        success: {
-            user: {
-                token: tokenForUser(req.user)
-            }
-        }
-    });
+	// res.cookie('cookie', tokenForUser(req.user));
+	res.json({
+		fail: null,
+		state: null,
+		success: {
+			user: {
+				token: tokenForUser(req.user)
+			}
+		}
+	});
 });
 
 module.exports = router;
