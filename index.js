@@ -1,34 +1,19 @@
-const http = require('http');
-const express = require('express');
-const database = require('./database/index');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const route = require('./route/route');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
+const http = require("http");
+const express = require("express");
+const passport = require("passport");
+const database = require("./database/index");
+const morgan = require("morgan");
+const route = require("./route/route");
+const cors = require("cors");
+const optionsCors = require("./helpers/cors");
 
 const app = express();
 database();
 
-app.use(morgan('combined'));
-app.use(cors());
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// app.use((req, res, next) => {
-//    res.setHeader('Access-Control-Allow-Origin', '*');
-//    res.setHeader(
-//       'Access-Control-Allow-Methods',
-//       'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-//    );
-//    res.setHeader(
-//       'Access-Control-Allow-Headers',
-//       'X-Requested-With,content-type,x-access-token'
-//    );
-//    res.setHeader('Access-Control-Allow-Credentials', true);
-//    next();
-// });
+app.use(morgan("tiny"));
+app.use(cors(optionsCors));
+app.use(express.json());
+app.use(passport.initialize());
 
 route(app);
 

@@ -1,8 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.post('/', (req, res) => {
-    res.send(['metin', 'pınar', 'fırat']);
+router.get("/", (req, res) => {
+   console.log("index");
+   res.send(["metin", "pınar", "fırat"]);
 });
 
 module.exports = router;

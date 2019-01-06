@@ -10,7 +10,6 @@ tokenForUser = user => {
 };
 
 router.post('/', (req, res, next) => {
-	// res.cookie('cookie', tokenForUser(req.user));
 	res.json({
 		fail: null,
 		state: null,
